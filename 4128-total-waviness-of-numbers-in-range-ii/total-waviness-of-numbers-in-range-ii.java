@@ -1,9 +1,5 @@
 class Solution {
-    // Dimensions: [index][prev_digit + 1][prev2_digit + 1][isTight][isLeadingZero]
-    // We change the DP to return a pair of values: [Total Waviness, Total Valid Numbers Formed]
-    // To memoize efficiently, we use a 6D array where the last dimension separates these two counts.
     private Long[][][][][][] memo;
-
     public long totalWaviness(long num1, long num2) {
         return countWavinessUntil(num2) - countWavinessUntil(num1 - 1);
     }
@@ -13,18 +9,10 @@ class Solution {
 
         String s = Long.toString(num);
         int n = s.length();
-        
-        // 0 for Waviness Sum, 1 for Count of Valid Numbers
         memo = new Long[n][11][11][2][2][2];
         
         return dp(0, 0, 0, 1, 1, s)[0];
     }
-
-    /**
-     * @return long[] where:
-     * res[0] = total accumulated waviness for all valid suffixes
-     * res[1] = total count of valid numbers that can be formed from this state
-     */
     private long[] dp(int idx, int prev, int prev2, int isTight, int isLeadingZero, String s) {
         // Base case: 0 waviness accumulated, but exactly 1 valid number completed
         if (idx == s.length()) {
