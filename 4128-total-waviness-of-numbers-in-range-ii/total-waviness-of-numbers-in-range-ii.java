@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     // Dimensions: [index][prev_digit + 1][prev2_digit + 1][isTight][isLeadingZero]
     // We change the DP to return a pair of values: [Total Waviness, Total Valid Numbers Formed]
